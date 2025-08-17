@@ -30,6 +30,6 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist
-          server-dir: /home4/krysta93/inventora360/inventora360
+          local-dir: ./dist/
+          server-dir: /home4/krysta93/inventora360/inventora360/
           log-level: verbose
