@@ -1,10 +1,9 @@
-
-name: 🚀 Deploy React App to cPanel
+name: 🚀 Deploy React (Vite) App to cPanel
 
 on:
   push:
     branches:
-      - main   # change if your default branch is master
+      - main   # change to master if that's your default branch
 
 jobs:
   build-and-deploy:
@@ -22,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build React App
+      - name: Build Vite App
         run: npm run build
 
       - name: Deploy to cPanel via FTP
@@ -31,5 +30,5 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./build
+          local-dir: ./dist       # Vite build output
           server-dir: /home4/krysta93/inventora360/inventora360
