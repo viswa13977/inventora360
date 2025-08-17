@@ -1,9 +1,9 @@
-name: Deploy React app to cPanel
+name: 🚀 Deploy React (Vite) App to cPanel
 
 on:
   push:
     branches:
-      - main   # or your branch
+      - main   # or master if that’s your repo branch
 
 jobs:
   build-and-deploy:
@@ -16,19 +16,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build project
+      - name: Build Vite App
         run: npm run build
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+      - name: Deploy to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/                     # upload contents of dist
-          server-dir: /inventora360/inventora360/  # your document root
+          local-dir: dist/
+          server-dir: /inventora360/inventora360/
+          log-level: verbose
